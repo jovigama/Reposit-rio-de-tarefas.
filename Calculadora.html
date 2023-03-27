@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Calculadora fodelona </title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .fundo{
+            text-align: center;
+            background-image: linear-gradient(to right, #f9d423 0%, #ff4e50 100%);
+            height: 100vh;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .calculadora{
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 15px;
+            padding: 15px;
+        }
+        .botao{
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            background-color: rgb(31,31,31);
+            border: none;
+            color: #fff;
+            margin: 2px;
+        }
+        .botao:hover{
+            background-color: rgb(49, 48, 48);
+        }
+        #resultado{
+            width: 208px;
+            height: 30px;
+            margin: 5px;
+            background-color: aliceblue;
+            color: black;
+            text-align: right;
+            padding: 5px;
+            font-size: 25px;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        /* BARRA DE ROLAGEM */
+        ::-webkit-scrollbar{
+            height: 5px;
+        }
+        /* TRILHA ( barra de progresso) da barra de rolagem */
+        ::-webkit-scrollbar-track{
+            background-color: rgb(255, 255, 255);
+        }
+        /* ALÇA DE ROLAGEM ARRASTÁVEL */
+        ::-webkit-scrollbar-thumb{
+            background-image: linear-gradient(to right, #f9d423 0%, #ff4e50 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="fundo">
+        <div class="nome autor">
+            <h1> João Victor lindaao </h1>
+        </div>
+        <div class="calculadora">
+           <h1> Calculadora </h1> 
+           <p id="resultado"></p>
+           <table>
+                <tr>
+                    <td><button class="botao" onclick="clean()" style="border-radius: 15px;"> C </button></td>  <!-- esse é para limpar a parte de resultado -->
+                    <td><button class="botao" onclick="back()" style="border-radius: 15px;"> < </button></td>  <!-- esse é para apagar um caracter -->
+                    <td><button class="botao" onclick="insert('/')" style="border-radius: 15px;"> / </button></td>  <!-- esse é para mostrar e realizar a divisão -->
+                    <td><button class="botao" onclick="insert('*')" style="border-radius: 15px;"> X </button></td>  <!-- esse é para mostrar e realizar a multiplicação -->
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('7')" style="border-radius: 15px;"> 7 </button></td>
+                    <td><button class="botao" onclick="insert('8')" style="border-radius: 15px;"> 8 </button></td>
+                    <td><button class="botao" onclick="insert('9')" style="border-radius: 15px;"> 9 </button></td>
+                    <td><button class="botao" onclick="insert('-')" style="border-radius: 15px;"> - </button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('4')" style="border-radius: 15px;"> 4 </button></td>
+                    <td><button class="botao" onclick="insert('5')" style="border-radius: 15px;"> 5 </button></td>
+                    <td><button class="botao" onclick="insert('6')" style="border-radius: 15px;"> 6 </button></td>
+                    <td><button class="botao" onclick="insert('+')" style="border-radius: 15px;"> + </button></td>
+                </tr>
+                <tr>
+                    <td><button class="botao" onclick="insert('1')" style="border-radius: 15px;"> 1 </button></td>
+                    <td><button class="botao" onclick="insert('2')" style="border-radius: 15px;"> 2 </button></td>
+                    <td><button class="botao" onclick="insert('3')" style="border-radius: 15px;"> 3 </button></td>
+                    <td rowspan="2"><button class="botao" style="height: 107px; background-image: linear-gradient(to right, #f9d423 0%, #ff4e50 100%); border-radius: 15px;" onclick="calcular()"> = </button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="botao" style="width: 107px; border-radius: 15px;" onclick="insert('0')"> 0 </button></td>
+                    <td><button class="botao" onclick="insert('.')" style="border-radius: 15px;"> . </button></td>
+
+                </tr>
+           </table>
+        </div>
+    </div>
+    <script>
+        function insert(num)  // "num" -> identificar que está se referindo a um número | vai pegar o que ja tem e vai colocar o numero que está vindo do parametro
+        {
+            var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero + num;  
+
+        }
+        function clean()  //vai apagar tudo dentro da "tela" da calculadora
+        {
+            document.getElementById('resultado').innerHTML = '';  
+        }
+        function back()  // vai apagar somente um caracter da direita pra esquerda
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1)
+        }
+        function calcular () // vai realizar o calculo graça ao "eval"
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            if(resultado) // quando houver calculo
+            {
+                document.getElementById('resultado').innerHTML = eval(resultado);
+            }
+            else // quando não houver calculo a ser realizado
+            {
+                document.getElementById('resultado').innerHTML = "Nada para calcular!"
+            }
+        }
+    </script>
+</body>
+</html>

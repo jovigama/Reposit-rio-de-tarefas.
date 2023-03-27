@@ -1,139 +1,91 @@
 <!DOCTYPE html>
-<html lang="br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Calculadora fodelona </title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
+	<title>Tarefa N1</title>
+	<style>
+		body {
+            margin: 0px;
+			padding: 0;
+			font-family: Arial, sans-serif;
+		}
+		
+		header {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+		}
+		
+		header ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		
+		header li {
+			float: left;
+		}
+		
+		header li a {
+			display: block;
+			color: white;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+		
+		header li a:hover {
+			background-color: #5a5757;
+            border-radius: 5px;
+		}
+		
+		main {
+            margin-left: 50px;
+            margin-right: 50px;
+			padding: 20px;
+			margin-bottom: 50px;
+		}
+		
+        .conteudo{
+            width: 50%;
+            margin-left: 50px;
+            margin-right: 50px;
         }
-        .fundo{
-            text-align: center;
-            background-image: linear-gradient(to right, #f9d423 0%, #ff4e50 100%);
-            height: 100vh;
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .calculadora{
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.8);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            border-radius: 15px;
-            padding: 15px;
-        }
-        .botao{
-            width: 50px;
-            height: 50px;
-            font-size: 25px;
-            cursor: pointer;
-            background-color: rgb(31,31,31);
-            border: none;
-            color: #fff;
-            margin: 2px;
-        }
-        .botao:hover{
-            background-color: rgb(49, 48, 48);
-        }
-        #resultado{
-            width: 208px;
-            height: 30px;
-            margin: 5px;
-            background-color: aliceblue;
-            color: black;
-            text-align: right;
-            padding: 5px;
-            font-size: 25px;
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-        /* BARRA DE ROLAGEM */
-        ::-webkit-scrollbar{
-            height: 5px;
-        }
-        /* TRILHA ( barra de progresso) da barra de rolagem */
-        ::-webkit-scrollbar-track{
-            background-color: rgb(255, 255, 255);
-        }
-        /* ALÇA DE ROLAGEM ARRASTÁVEL */
-        ::-webkit-scrollbar-thumb{
-            background-image: linear-gradient(to right, #f9d423 0%, #ff4e50 100%);
-        }
-    </style>
+
+		footer {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+		}
+		
+	</style>
 </head>
 <body>
-    <div class="fundo">
-        <div class="nome autor">
-            <h1> João Victor lindaao </h1>
-        </div>
-        <div class="calculadora">
-           <h1> Calculadora </h1> 
-           <p id="resultado"></p>
-           <table>
-                <tr>
-                    <td><button class="botao" onclick="clean()" style="border-radius: 15px;"> C </button></td>  <!-- esse é para limpar a parte de resultado -->
-                    <td><button class="botao" onclick="back()" style="border-radius: 15px;"> < </button></td>  <!-- esse é para apagar um caracter -->
-                    <td><button class="botao" onclick="insert('/')" style="border-radius: 15px;"> / </button></td>  <!-- esse é para mostrar e realizar a divisão -->
-                    <td><button class="botao" onclick="insert('*')" style="border-radius: 15px;"> X </button></td>  <!-- esse é para mostrar e realizar a multiplicação -->
-                </tr>
-                <tr>
-                    <td><button class="botao" onclick="insert('7')" style="border-radius: 15px;"> 7 </button></td>
-                    <td><button class="botao" onclick="insert('8')" style="border-radius: 15px;"> 8 </button></td>
-                    <td><button class="botao" onclick="insert('9')" style="border-radius: 15px;"> 9 </button></td>
-                    <td><button class="botao" onclick="insert('-')" style="border-radius: 15px;"> - </button></td>
-                </tr>
-                <tr>
-                    <td><button class="botao" onclick="insert('4')" style="border-radius: 15px;"> 4 </button></td>
-                    <td><button class="botao" onclick="insert('5')" style="border-radius: 15px;"> 5 </button></td>
-                    <td><button class="botao" onclick="insert('6')" style="border-radius: 15px;"> 6 </button></td>
-                    <td><button class="botao" onclick="insert('+')" style="border-radius: 15px;"> + </button></td>
-                </tr>
-                <tr>
-                    <td><button class="botao" onclick="insert('1')" style="border-radius: 15px;"> 1 </button></td>
-                    <td><button class="botao" onclick="insert('2')" style="border-radius: 15px;"> 2 </button></td>
-                    <td><button class="botao" onclick="insert('3')" style="border-radius: 15px;"> 3 </button></td>
-                    <td rowspan="2"><button class="botao" style="height: 107px; background-image: linear-gradient(to right, #f9d423 0%, #ff4e50 100%); border-radius: 15px;" onclick="calcular()"> = </button></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><button class="botao" style="width: 107px; border-radius: 15px;" onclick="insert('0')"> 0 </button></td>
-                    <td><button class="botao" onclick="insert('.')" style="border-radius: 15px;"> . </button></td>
 
-                </tr>
-           </table>
-        </div>
+<header>
+    <ul>
+        <li><a href="#"> Esse </a></li>
+        <li><a href="#"> É </a></li>
+        <li><a href="#"> Meu </a></li>
+        <li><a href="#"> Menu </a></li>
+    </ul>
+</header>
+
+<main>
+    <div class="conteudo">
+        <h1>Tecnologia</h1>
+        <p>A tecnologia está mudando rapidamente o mundo em que vivemos. Desde smartphones e tablets até carros autônomos e inteligência artificial, a tecnologia está transformando a maneira como vivemos e trabalhamos.</p>
+        <p>Uma das maiores tendências em tecnologia atualmente é a Internet das Coisas (IoT). A IoT refere-se à conexão de dispositivos cotidianos à Internet, permitindo que eles se comuniquem entre si e com outros dispositivos. Isso pode incluir tudo, desde termostatos inteligentes e lâmpadas conectadas até carros autônomos e drones.</p>
+        <p>Outra tendência importante em tecnologia é a inteligência artificial (IA). A IA refere-se à capacidade das máquinas de aprender e tomar decisões com base em dados. Isso pode incluir tudo, desde assistentes virtuais como a Siri e o Alexa até carros autônomos e robôs industriais.</p>
     </div>
-    <script>
-        function insert(num)  // "num" -> identificar que está se referindo a um número | vai pegar o que ja tem e vai colocar o numero que está vindo do parametro
-        {
-            var numero = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = numero + num;  
-
-        }
-        function clean()  //vai apagar tudo dentro da "tela" da calculadora
-        {
-            document.getElementById('resultado').innerHTML = '';  
-        }
-        function back()  // vai apagar somente um caracter da direita pra esquerda
-        {
-            var resultado = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1)
-        }
-        function calcular () // vai realizar o calculo graça ao "eval"
-        {
-            var resultado = document.getElementById('resultado').innerHTML;
-            if(resultado) // quando houver calculo
-            {
-                document.getElementById('resultado').innerHTML = eval(resultado);
-            }
-            else // quando não houver calculo a ser realizado
-            {
-                document.getElementById('resultado').innerHTML = "Nada para calcular!"
-            }
-        }
-    </script>
+</main>
 </body>
+
+<footer>
+    <p>Este é o rodapé do site.</p>
+</footer>
+
 </html>
